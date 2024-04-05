@@ -1,10 +1,16 @@
-from peewee import *;
+import os, sys 
 
-bd = PostgresqlDatabase('gymworkout', port = 5432, user = 'postgres', password = '121427')
+bdConnection = (os.getcwd()+'/Backend/bd')
 
-class BaseModel(Model):
+sys.path.append(bdConnection)
+
+from Connection import * # type: ignore
+
+class BaseModel(Model): 
     class Meta():
         database = bd
+
+   
 
 class Personal(BaseModel):
     id = AutoField()
@@ -13,7 +19,6 @@ class Personal(BaseModel):
     password = CharField(max_length=50)
     phone = CharField(max_length=11)
 
-
 bd.connect()
-# bd.create_tables([Personal])
+bd.create_tables([Personal])
 bd.close()
