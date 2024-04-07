@@ -1,4 +1,5 @@
-import os, sys 
+import os, sys
+from peewee import *
 
 bdConnection = (os.getcwd()+'/Backend/bd')
 
