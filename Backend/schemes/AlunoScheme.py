@@ -19,7 +19,7 @@ class Aluno(BaseModel):
     email = CharField(max_length=50)
     password = CharField(max_length=50)
     phone = CharField(max_length=11)
-    dateOfBirth = CharField(max_length=8)
+    dateOfBirth = DateField()
     height = IntegerField()
     weight = FloatField()
 
