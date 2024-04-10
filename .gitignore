@@ -1,2 +1,5 @@
 venv
 node_modules
+Backend/bd
+Backend/routes/__pycache__
+Backend/schemes/__pycache__
