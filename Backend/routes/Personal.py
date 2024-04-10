@@ -4,6 +4,7 @@ import os,sys
 
 schemes = (os.getcwd()+'/Backend/schemes')
 sys.path.append(schemes)
+print(schemes)
 
 from PersonalScheme import * # type: ignore
 
