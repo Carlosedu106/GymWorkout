@@ -1,6 +1,6 @@
 from peewee import *
 
-bd = PostgresqlDatabase('gymworkout', port = 5432, user = 'postgres', password = '121427')
+bd = PostgresqlDatabase('gymworkout', port = 5432, user = 'postgres', password = '12345678')
 
 
 
