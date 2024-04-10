@@ -1,0 +1,22 @@
+.form_container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_content {
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 5px;
+    height: 50vh;
+    width: 40vw;
+}
+
+.input {
+    width: 100%;
+}
+
+.labelInput {
+    margin-top: 100px;
+}
