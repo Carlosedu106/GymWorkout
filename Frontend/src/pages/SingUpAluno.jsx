@@ -1,13 +1,16 @@
-import styles from "./SingUp.module.css";
+import styles from "./SingUpAluno.module.css";
 import axios from "axios";
 import React, {useState} from "react";
 
-const SingUp = () => {
+const SingUpAluno = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [phone, setPhone] = useState("");
+    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [height, setHeight] = useState("");
+    const [weight, setWeight] = useState("");
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +21,7 @@ const SingUp = () => {
         }
 
         try {
-            const response = await axios.post("/personal/register", {"name":name, "email":email, "password":password, "phone":phone});
+            const response = await axios.post("/aluno/register", {"name":name, "email":email, "password":password, "phone":phone, "dateOfBirth":dateOfBirth, "height":height, "weight":weight});
             console.log("Requisição enviada")
             console.log(response.data)
         } catch (error) {
@@ -50,6 +53,24 @@ const SingUp = () => {
                         />
                     </label>
                     <label>
+                        <p>Data de nascimento:</p>
+                        <input type="text"
+                               onChange={(e) => setDateOfBirth(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        <p>Altura:</p>
+                        <input type="text"
+                               onChange={(e) => setHeight(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        <p>Peso:</p>
+                        <input type="text"
+                               onChange={(e) => setWeight(e.target.value)}
+                        />
+                    </label>
+                    <label>
                         <p>Senha:</p>
                         <input type="password"
                                onChange={(e) => setPassword(e.target.value)}
@@ -71,4 +92,4 @@ const SingUp = () => {
     );
 }
 
-export default SingUp;
+export default SingUpAluno;

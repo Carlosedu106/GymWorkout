@@ -21,5 +21,5 @@ class Personal(BaseModel):
     phone = CharField(max_length=11)
 
 bd.connect()
-bd.create_tables([Personal])
+# bd.create_tables([Personal])
 bd.close()

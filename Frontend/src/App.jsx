@@ -1,5 +1,6 @@
 import './App.css'
-import SingUp from "./pages/SingUp";
+import SingUpPersonal from './pages/SingUpPersonal';
+import SingUpAluno from './pages/SingUpAluno';
 import Home from "./pages/Home"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -12,7 +13,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/register" element={<SingUp/>}/>
+        <Route path="/personal/register" element={<SingUpPersonal/>}/>
+        <Route path="/aluno/register" element={<SingUpAluno/>}/>
       </Routes>
     </BrowserRouter>
   </>
