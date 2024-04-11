@@ -1,16 +1,17 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
 
 import os,sys
 
 schemes = (os.getcwd()+'/Backend/schemes')
 sys.path.append(schemes)
-print(schemes)
 
 from PersonalScheme import * # type: ignore
 
 app = Flask(__name__)
 
-@app.route('/personal/register', methods = ['POST'])
+personal_pb = Blueprint('personal', __name__)
+
+@personal_pb.route('/personal/register', methods = ['POST'])
 def register():
     data = request.get_json()
     if Personal.select().where(Personal.email == data["email"]).exists():
@@ -23,5 +24,3 @@ def register():
     )
     newPersonal.save()
     return jsonify(data)
-
-app.run(port = 5000, host = 'localhost', debug=True)

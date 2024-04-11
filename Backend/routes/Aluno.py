@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
 
 import os,sys
 
@@ -10,7 +10,9 @@ from AlunoScheme import * # type: ignore
 
 app = Flask(__name__)
 
-@app.route('/aluno/register', methods = ['POST'])
+aluno_bp = Blueprint('aluno', __name__)
+
+@aluno_bp.route('/aluno/register', methods = ['POST'])
 def register():
     data = request.get_json()
     if Aluno.select().where(Aluno.email == data["email"]).exists():
@@ -27,4 +29,3 @@ def register():
     newAluno.save()
     return jsonify(data)
 
-app.run(port = 5000, host = 'localhost', debug=True)
