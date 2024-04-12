@@ -1,6 +1,8 @@
 import styles from "./SingUpPersonal.module.css";
 import axios from "axios";
 import React, {useState} from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SingUpPersonal = () => {
     const [name, setName] = useState("");
@@ -9,20 +11,38 @@ const SingUpPersonal = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [phone, setPhone] = useState("");
     
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+    
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
+        e.preventDefault()
+        if (!validateEmail(email)) {
+            toast.warn("Por favor, insira um email válido.");
+            return;
+        }
+        if (password.length < 8) {
+            toast.warn("A senha deve ter pelo menos 8 caracteres.");
+            return;
+        }
         if (password !== confirmPassword) {
-            console.error("As senhas não coincidem");
+            toast.warn("As senhas digitadas devem ser iguais nos 2 campos.");
             return;
         }
 
         try {
             const response = await axios.post("/personal/register", {"name":name, "email":email, "password":password, "phone":phone});
-            console.log("Requisição enviada")
-            console.log(response.data)
+            if (response.data != "error") {
+                toast.success("Cadastro Realizado com Sucesso!");
+            }
         } catch (error) {
-            console.error("Erro ao enviar formulário", error);
+            if(error.response.status === 400){
+            toast.error("O e-mail já está sendo utilizado.");
+        } else {
+            toast.error("Erro ao enviar formulário. Por favor, tente novamente mais tarde.");
+        }
+            console.log("Erro capturado:", error);
+
         }
     
     };
@@ -30,7 +50,8 @@ const SingUpPersonal = () => {
  return (
          <>       
             <div className={styles.form_div}>
-                <form className={styles.form_styled}>
+                <ToastContainer />
+                <form onSubmit={handleSubmit} className={styles.form_styled}>
                     <label>
                         <p>Nome Usuário:</p>
                         <input type="text" 
@@ -61,7 +82,7 @@ const SingUpPersonal = () => {
                                onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </label>
-                    <button className={styles.button} onClick={handleSubmit}>Cadastrar</button>
+                    <button type="submit" className={styles.button} >Cadastrar</button>
                 </form>
             </div>
             <div className={styles.base_text}>
