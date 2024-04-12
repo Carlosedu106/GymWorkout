@@ -40,7 +40,13 @@ const SingUpAluno = () => {
                 toast.success("Cadastro Realizado com Sucesso!");
             }
         } catch (error) {
-            console.error("Erro ao enviar formulário", error);
+            if(error.response.status === 400){
+            toast.error("O e-mail já está sendo utilizado.");
+        } else {
+            toast.error("Erro ao enviar formulário. Por favor, tente novamente mais tarde.");
+        }
+            console.log("Erro capturado:", error);
+
         }
 
     };
