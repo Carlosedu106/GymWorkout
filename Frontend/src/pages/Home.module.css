@@ -1,0 +1,21 @@
+.center{
+    padding: 5px;
+    margin: 10px;
+    
+}
+
+.button{
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    background-color: #FFBD59;
+    padding: 10px 20px;
+    margin: 5px;
+    width: auto;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.button:hover{
+    background-color: #ed940d;
+}
