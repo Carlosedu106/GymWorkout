@@ -64,4 +64,4 @@ def logout():
 
 @loginManager.user_loader
 def get_user(user_id):
-    return Aluno.select().where(Aluno.email == data["email"]).first()
+    return Aluno.select().where(Aluno.id == data["id"]).first()
