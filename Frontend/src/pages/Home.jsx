@@ -10,6 +10,9 @@ const Home = () => {
         <Link to={"/aluno/register"}>
             <button className={styles.button}>Aluno</button>
         </Link>
+        <Link to={"/login"}>
+            <button className={styles.button}>Login</button>
+        </Link>
     </h1>;
 };
 
