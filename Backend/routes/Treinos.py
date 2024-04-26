@@ -51,3 +51,17 @@ def getExercicioByName(name):
     else:
         # Se a requisição falhar, retornar uma mensagem de erro
         return 'Erro ao obter os exercícios', response.status_code
+    
+@exercicios_bp.route('/exercises/targetList', methods = ['GET'])
+def getTargets():
+    url = f'{urlBase}/targetList'
+    response = requests.get(url, headers=headers, params=params)
+    print(response)
+    
+    if response.ok:
+        # Retornando os dados como JSON
+        return jsonify(response.json())
+    else:
+        # Se a requisição falhar, retornar uma mensagem de erro
+        return 'Erro ao obter os dados!', response.status_code
+    
