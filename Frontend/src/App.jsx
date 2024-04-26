@@ -1,7 +1,7 @@
 import './App.css'
 import SingUpPersonal from './pages/SingUpPersonal';
 import SingUpAluno from './pages/SingUpAluno';
-import LoginPage from './pages/LoginPage'
+import SignIn from './pages/SignIn';
 import Home from "./pages/Home"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/personal/register" element={<SingUpPersonal/>}/>
         <Route path="/aluno/register" element={<SingUpAluno/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/signin" element={<SignIn/>}></Route>
       </Routes>
     </BrowserRouter>
   </>

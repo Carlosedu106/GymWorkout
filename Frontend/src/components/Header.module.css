@@ -1,0 +1,45 @@
+.button{
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFBD59;
+    padding: 10px 20px;
+    margin: 5px;
+    width: auto;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.button1{
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    width: auto;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.button:hover{
+    background-color: #ed940d;
+}
+
+.Header{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Ubuntu', sans-serif;
+    background:#e6e4e358 ;
+    align-items: center;
+    padding: 5px 35px;
+}
+
+.Workout{
+
+    color: #FFBD59;
+}
+
+h1{
+    color: rgb(28, 27, 27);
+}
+
