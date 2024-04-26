@@ -1,8 +1,8 @@
-.center{
+/* .center{
     padding: 5px;
     margin: 10px;
     
-}
+} */
 
 .button{
     cursor: pointer;
@@ -18,4 +18,12 @@
 
 .button:hover{
     background-color: #ed940d;
+}
+
+.Homepage{
+    height: 100vh;
+    background-image: url("../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size:cover ;
+    background-position: bottom;
 }
