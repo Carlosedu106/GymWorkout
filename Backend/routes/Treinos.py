@@ -31,8 +31,20 @@ def getExercicios():
 def getExercicioById(id):
     url = f'{urlBase}/exercise/{id}'
     response = requests.get(url, headers=headers, params=params)
-    print(urlBase)
-    print(url)
+   
+    if response.ok:
+        # Retornando os dados como JSON
+        return jsonify(response.json())
+    else:
+        # Se a requisição falhar, retornar uma mensagem de erro
+        return 'Erro ao obter os exercícios', response.status_code
+    
+@exercicios_bp.route('/exercises/name/<string:name>', methods = ['GET'])
+def getExercicioByName(name):
+    url = f'{urlBase}/name/{name}'
+    response = requests.get(url, headers=headers, params=params)
+    print(response)
+    
     if response.ok:
         # Retornando os dados como JSON
         return jsonify(response.json())
