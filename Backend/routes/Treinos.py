@@ -1,5 +1,6 @@
 import requests
 from flask import Flask, jsonify, request, Blueprint
+from translationstring import Translator
 
 app = Flask(__name__)
 
@@ -12,7 +13,8 @@ headers = {
     'X-RapidAPI-Key': '56e056fbc8msh7068f13bbc68e00p130510jsn9f488476d056'
 }
 params = {
-    'limit': '50'
+    'limit': '50',
+    'lang': 'pt-BR'
 }
 
 @exercicios_bp.route('/exercises/', methods = ['GET'])
@@ -65,3 +67,15 @@ def getTargets():
         # Se a requisição falhar, retornar uma mensagem de erro
         return 'Erro ao obter os dados!', response.status_code
     
+@exercicios_bp.route('/equipments', methods = ['GET'])
+def getEquipaments():
+    url = f'{urlBase}/equipmentList'
+    response = requests.get(url, headers=headers, params=params)
+    print(response)
+    
+    if response.ok:
+        # Retornando os dados como JSON
+        return jsonify(response.json())
+    else:
+        # Se a requisição falhar, retornar uma mensagem de erro
+        return 'Erro ao obter os dados!', response.status_code
