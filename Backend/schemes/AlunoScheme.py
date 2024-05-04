@@ -1,3 +1,5 @@
+from flask import Flask
+from flask_login import UserMixin
 import os, sys
 from peewee import *
 
@@ -13,7 +15,8 @@ class BaseModel(Model):
 
    
 
-class Aluno(BaseModel):
+
+class Aluno(BaseModel, UserMixin):
     id = AutoField()
     name = CharField(max_length=50)
     email = CharField(max_length=50)

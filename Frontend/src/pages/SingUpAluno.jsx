@@ -3,6 +3,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
+import {Link} from "react-router-dom"
+
 
 const SingUpAluno = () => {
     const [name, setName] = useState("");
@@ -13,11 +16,15 @@ const SingUpAluno = () => {
     const [dateOfBirth, setDateOfBirth] = useState("");
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
-    
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
+
+    const handleLogin = () => {
+        navigate ("/signin")
+    } 
     
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -55,6 +62,10 @@ const SingUpAluno = () => {
         <>
             <div className={styles.form_div}>
                 <ToastContainer />
+                <Link to={"/personal/register"}>
+                    <button className={`${styles.button} ${styles.button_personal} `}> Sou personal
+                    </button>
+                </Link>
                 <form onSubmit={handleSubmit} className={styles.form_styled}>
                     <label>
                         <p>Nome Usuário:</p>
@@ -109,7 +120,7 @@ const SingUpAluno = () => {
 
             </div>
             <div className={styles.base_text}>
-                <p>Já possui uma conta?<span> Faça login</span> </p>
+                <p>Já possui uma conta?<span onClick={handleLogin}> Faça login</span> </p>
             </div>
         </>
     );
