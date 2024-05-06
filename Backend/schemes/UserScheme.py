@@ -1,0 +1,45 @@
+from flask import Flask
+from flask_login import UserMixin
+import os, sys
+from peewee import *
+
+bdConnection = (os.getcwd()+'/Backend/bd')
+
+from TipoUsuarioScheme import *
+
+sys.path.append(bdConnection)
+
+from Connection import * # type: ignore
+
+class BaseModel(Model): 
+    class Meta():
+        database = bd
+
+class Usuario(BaseModel, UserMixin):
+    name = CharField(max_length=50, unique=True)
+    email = CharField(max_length=50, unique=True)
+    password = CharField(max_length=50)
+    phone = CharField(max_length=11)
+    dateOfBirth = DateField()
+    tipoUsuario= ForeignKeyField(TipoUsuario, backref="usuarios")
+
+if not bd.is_closed():
+    bd.close()
+
+# bd.connect()
+# bd.create_tables([Usuario])
+# bd.close()
+def cadastrarUsuario(name_user, email_user, phone_user, dateOfBirth_user, password_user, tipoUsuario_user):
+    user1 = Usuario(
+        name = name_user,
+        email = email_user,
+        phone = phone_user,
+        dateOfBirth = dateOfBirth_user,
+        password = password_user,
+        tipoUsuario = TipoUsuario.select().where(TipoUsuario.descricao == tipoUsuario_user)
+    )
+
+    user1.save()
+# cadastrarUsuario('Halan Caio', 'hallankayo20@gmail.com', '11111111111', '2001-12-21', '12345678', 'Administrador')
+cadastrarUsuario('Carlos Eduardo', 'carlosed@gmail.com', '22222222222', '2001-06-16', '87654321', 'Personal')
+cadastrarUsuario('Daniel', 'Daniel@gmail.com', '11111111111', '2001-12-21', '12345678', 'Aluno')
