@@ -3,6 +3,10 @@ import axios from "axios";
 import React, {useState} from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+<<<<<<< HEAD
+=======
+import {Link} from "react-router-dom";
+>>>>>>> 9e7861934b4d88386c4585c4ea372644789e67c5
 
 const SingUpPersonal = () => {
     const [name, setName] = useState("");
@@ -86,7 +90,10 @@ const SingUpPersonal = () => {
                 </form>
             </div>
             <div className={styles.base_text}>
-                <p>Já possui uma conta?<span> Faça login</span> </p>
+                <p>Já possui uma conta?&nbsp;
+                    <Link to={"/signin"}>
+                       Faça login
+                    </Link> </p>
             </div>
         </>
     );

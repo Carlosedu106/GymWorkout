@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 .center{
     padding: 5px;
     margin: 10px;
     
 }
+=======
+/* .center{
+    padding: 5px;
+    margin: 10px;
+    
+} */
+>>>>>>> 9e7861934b4d88386c4585c4ea372644789e67c5
 
 .button{
     cursor: pointer;
@@ -18,4 +26,15 @@
 
 .button:hover{
     background-color: #ed940d;
+<<<<<<< HEAD
+=======
+}
+
+.Homepage{
+    height: 100vh;
+    background-image: url("../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size:cover ;
+    background-position: bottom;
+>>>>>>> 9e7861934b4d88386c4585c4ea372644789e67c5
 }
