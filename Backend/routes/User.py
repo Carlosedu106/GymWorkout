@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, Blueprint
 from flask_login import login_user, logout_user, LoginManager, current_user
+from flask_bcrypt import Bcrypt
 
 import os,sys
 
@@ -9,6 +10,8 @@ sys.path.append(schemes)
 from UserScheme import * # type: ignore
 
 app = Flask(__name__)
+
+bcrypt = Bcrypt(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -23,11 +26,12 @@ user_bp = Blueprint('user', __name__)
 def register():
     data = request.get_json()
     if Usuario.select().where(Usuario.email == data["email"]).exists():
-        return "Email Já Cadastrado", 400
+        return "Email já cadastrado", 400
+    hashed_password = bcrypt.generate_password_hash(data["password"]).decode('utf-8')
     newUser = Usuario.create(
         name =  data["name"],
         email = data["email"],
-        password = data["password"],
+        password = hashed_password,
         phone = data["phone"],
         dateOfBirth = data["dateOfBirth"],
         height = data["height"],
@@ -48,12 +52,16 @@ def login():
         return "Password necessita ser preenchido!",400
 
     try:
-        user = Usuario.select().where(Usuario.email == data["email"], Usuario.password == data["password"]).get()
-        user_info = user.to_dict()
-        login_user(user)
-        return jsonify(user_info),200
+        user = Usuario.get(Usuario.email == data["email"])
+        if bcrypt.check_password_hash(user.password, data["password"]):
+            user_info = user.to_dict()
+            login_user(user)
+            return jsonify(user_info),200
+        else:
+            return "Email ou Senha incorretos!", 403
     except Usuario.DoesNotExist:
         return "Email ou Senha incorretos!", 403
+
     
 @user_bp.route('/user/logout')
 def logout():

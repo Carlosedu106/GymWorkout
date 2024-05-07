@@ -18,7 +18,7 @@ class BaseModel(Model):
 class Usuario(BaseModel, UserMixin):
     name = CharField(max_length=50, unique=True)
     email = CharField(max_length=50, unique=True)
-    password = CharField(max_length=50)
+    password = CharField()
     phone = CharField(max_length=11)
     dateOfBirth = DateField()
     tipoUsuario= ForeignKeyField(TipoUsuario, backref="usuarios")
