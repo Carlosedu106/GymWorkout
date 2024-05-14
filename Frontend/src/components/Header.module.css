@@ -2,7 +2,7 @@
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    background-color: #FFBD59;
+    background-color: #ed940d;
     padding: 10px 20px;
     margin: 5px;
     width: auto;
@@ -22,21 +22,21 @@
 }
 
 .button:hover{
-    background-color: #ed940d;
+    background-color: #FFBD59;
 }
 
 .Header{
     display: flex;
     justify-content: space-between;
     font-family: 'Ubuntu', sans-serif;
-    background:#e6e4e358 ;
+    background:#e6e4e34b ;
     align-items: center;
     padding: 5px 35px;
 }
 
 .Workout{
 
-    color: #FFBD59;
+    color: #F49040;
 }
 
 h1{

@@ -6,9 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/personal': 'http://localhost:5000',
-      '/aluno' : 'http://localhost:5000'
-      
+      '/user': 'http://localhost:5000',
+      '/tipoUsuario' : 'http://localhost:5000'
     }
   }
 })

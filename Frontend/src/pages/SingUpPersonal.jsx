@@ -3,10 +3,7 @@ import axios from "axios";
 import React, {useState} from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-<<<<<<< HEAD
-=======
 import {Link} from "react-router-dom";
->>>>>>> 9e7861934b4d88386c4585c4ea372644789e67c5
 
 const SingUpPersonal = () => {
     const [name, setName] = useState("");
@@ -18,6 +15,14 @@ const SingUpPersonal = () => {
     const validateEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
+
+    const cleanInput = () => {
+        setName("")
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
+        setPhone("")
+    }
     
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -35,9 +40,11 @@ const SingUpPersonal = () => {
         }
 
         try {
-            const response = await axios.post("/personal/register", {"name":name, "email":email, "password":password, "phone":phone});
+            const response = await axios.post("/user/register", {"name":name, "email":email, "password":password, "phone":phone,"dateOfBirth": "01/01/2001", "height": 180, "weight": 80, "typeUser":2});
             if (response.data != "error") {
                 toast.success("Cadastro Realizado com Sucesso!");
+                cleanInput();
+                console.log("passou por aqui")
             }
         } catch (error) {
             if(error.response.status === 400){
@@ -60,30 +67,35 @@ const SingUpPersonal = () => {
                         <p>Nome Usuário:</p>
                         <input type="text" 
                                onChange={(e) => setName(e.target.value)}
+                               value={name}
                         />
                     </label>
                     <label>
                         <p>E-mail:</p>
                         <input type="text" 
                                onChange={(e) => setEmail(e.target.value)}
+                               value={email}
                         />
                     </label>
                     <label>
                         <p>Telefone:</p>
                         <input type="text"
                                onChange={(e) => setPhone(e.target.value)}
+                               value={phone}
                         />
                     </label>
                     <label>
                         <p>Senha:</p>
                         <input type="password"
                                onChange={(e) => setPassword(e.target.value)}
+                               value={password}
                         />
                     </label>
                     <label>
                         <p>Confirmar senha:</p>
                         <input type="password" 
                                onChange={(e) => setConfirmPassword(e.target.value)}
+                               value={confirmPassword}
                         />
                     </label>
                     <button type="submit" className={styles.button} >Cadastrar</button>

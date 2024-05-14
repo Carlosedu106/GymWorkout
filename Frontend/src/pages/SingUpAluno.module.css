@@ -18,6 +18,7 @@
   }
 
   .form_styled input[type='text'],
+  .form_styled input[type='date'],
   .form_styled input[type='password'] {
   display: flex;
   margin-bottom: 10px;
@@ -26,6 +27,13 @@
   box-sizing: border-box;
   border-radius: 20px;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  -webkit-appearance: none;
+  padding-left: 100px;
+  float: right;
+}
+
 
 .button{
     cursor: pointer;
