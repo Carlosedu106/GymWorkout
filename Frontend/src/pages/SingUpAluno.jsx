@@ -24,7 +24,19 @@ const SingUpAluno = () => {
 
     const handleLogin = () => {
         navigate ("/signin")
-    } 
+    };
+    
+    const cleanInput = () => {
+        setName("")
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
+        setPhone("")
+        setDateOfBirth("")
+        setHeight("")
+        setWeight("")
+    }
+
     
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -40,11 +52,13 @@ const SingUpAluno = () => {
             toast.warn("As senhas digitadas devem ser iguais nos 2 campos.");
             return;
         }
-
+        
         try {
-            const response = await axios.post("/aluno/register", { "name": name, "email": email, "password": password, "phone": phone, "dateOfBirth": dateOfBirth, "height": height, "weight": weight });
+            const response = await axios.post("/user/register", { "name": name, "email": email, "password": password, "phone": phone, "dateOfBirth": dateOfBirth, "height": height, "weight": weight, "typeUser":3 });
+            console.log("Tá aquiiii")
             if (response.data != "error") {
                 toast.success("Cadastro Realizado com Sucesso!");
+                cleanInput();
             }
         } catch (error) {
             if(error.response.status === 400){
@@ -71,51 +85,59 @@ const SingUpAluno = () => {
                         <p>Nome Usuário:</p>
                         <input type="text"
                             onChange={(e) => setName(e.target.value)}
+                            value={name}
                         />
                     </label>
                     <label>
                         <p>E-mail:</p>
                         <input type="text"
                             onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                         />
                     </label>
                     <label>
                         <p>Telefone:</p>
                         <input type="text"
                             onChange={(e) => setPhone(e.target.value)}
+                            value={phone}
                         />
                     </label>
                     <label>
                         <p>Data de nascimento:</p>
-                        <input type="text"
+                        <input type="date"
                             onChange={(e) => setDateOfBirth(e.target.value)}
+                            value={dateOfBirth}
                         />
                     </label>
                     <label>
                         <p>Altura:</p>
                         <input type="text"
                             onChange={(e) => setHeight(e.target.value)}
+                            value={height}
                         />
                     </label>
                     <label>
                         <p>Peso:</p>
                         <input type="text"
                             onChange={(e) => setWeight(e.target.value)}
+                            value={weight}
                         />
                     </label>
                     <label>
                         <p>Senha:</p>
                         <input type="password"
                             onChange={(e) => setPassword(e.target.value)}
+                            value={password}
                         />
                     </label>
                     <label>
                         <p>Confirmar senha:</p>
                         <input type="password"
                             onChange={(e) => setConfirmPassword(e.target.value)}
+                            value={confirmPassword}
                         />
                     </label>
-                    <button type="submit" className={styles.button} >Cadastrar</button>
+                    <button type="submit" className={styles.button}>Cadastrar</button>
                 </form>
 
             </div>

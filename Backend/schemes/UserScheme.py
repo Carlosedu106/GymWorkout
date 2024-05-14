@@ -38,9 +38,9 @@ if not bd.is_closed():
 
 
 
-# bd.connect()
+bd.connect()
 # bd.create_tables([Usuario])
-# bd.close()
+bd.close()
 # def cadastrarUsuario(name_user, email_user, phone_user, dateOfBirth_user, password_user, tipoUsuario_user):
 #     user1 = Usuario(
 #         name = name_user,
@@ -48,7 +48,7 @@ if not bd.is_closed():
 #         phone = phone_user,
 #         dateOfBirth = dateOfBirth_user,
 #         password = password_user,
-#         tipoUsuario = TipoUsuario.select().where(TipoUsuario.descricao == tipoUsuario_user)
+#         tipoUsuario = TipoUsuario.select().where(TipoUsuario.descricao == tipoUsuario_user).first()
 #     )
 
 #     user1.save()

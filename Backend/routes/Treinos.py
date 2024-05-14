@@ -1,6 +1,5 @@
 import requests
 from flask import Flask, jsonify, request, Blueprint
-from translationstring import Translator
 
 app = Flask(__name__)
 

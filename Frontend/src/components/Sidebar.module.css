@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.Sidebar {
+    background-color: #363434;
+    height: 100vh;
+    width: 190px;
+    padding: 20px;
+    padding-top: 80px;
+}
+
+.Sidebar ul {
+    font-family: 'Roboto', sans-serif; 
+    font-size: 1em;
+    line-height: 50px;
+    color: #FFF;
+    list-style: none;
+}
+
+.Sidebar li{
+    display: flex;
+    align-items: center;
+    
+}
+
+.Sidebar li:hover{
+    background-color: #1c1c1c;
+    cursor: pointer;
+    border-radius: 5px;
+}
