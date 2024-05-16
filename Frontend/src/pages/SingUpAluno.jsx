@@ -54,7 +54,7 @@ const SingUpAluno = () => {
         }
         
         try {
-            const response = await axios.post("/user/register", { "name": name, "email": email, "password": password, "phone": phone, "dateOfBirth": dateOfBirth, "height": height, "weight": weight, "typeUser":3 });
+            const response = await axios.post("/user/register", { "name": name, "email": email, "password": password, "phone": phone, "dateOfBirth": dateOfBirth, "height": height, "weight": weight, "typeUser":1 });
             console.log("Tá aquiiii")
             if (response.data != "error") {
                 toast.success("Cadastro Realizado com Sucesso!");
