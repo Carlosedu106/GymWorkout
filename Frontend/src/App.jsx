@@ -4,8 +4,7 @@ import SingUpAluno from './pages/SingUpAluno';
 import SignIn from './pages/SignIn';
 import Home from "./pages/Home"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SideBarAdm from './components/SidebarAdm';
-import Dashboard from './pages/Dashboard';
+import MainPage from './pages/MainPage';
 
 function App() {
 
@@ -19,7 +18,7 @@ function App() {
         <Route path="/personal/register" element={<SingUpPersonal/>}/>
         <Route path="/aluno/register" element={<SingUpAluno/>}/>
         <Route path="/signin" element={<SignIn/>}></Route>
-        <Route path="/teste" element={<Dashboard/>}></Route>
+        <Route path="/main" element={<MainPage/>}></Route>
       </Routes>
     </BrowserRouter>
   </>
