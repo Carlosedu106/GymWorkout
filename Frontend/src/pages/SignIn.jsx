@@ -3,13 +3,14 @@ import styles from "./SignIn.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {Icon} from "@iconify/react"
 
 export const SingIn=() => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate("");
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -20,9 +21,11 @@ export const SingIn=() => {
         }
         
         try {
-            const response = await axios.post("/aluno/login", {"email": email, "password": password});
+            const response = await axios.post("/user/login", {"email": email, "password": password});
             if (response.data != "error") {
+                const tiposUsuario = (response.data.typeUser)
                 toast.success("Login Realizado com Sucesso!");
+                navigate("/main", { state: {usuario:tiposUsuario} })
             }
         } catch (error) {
             if(error.response.status === 403){
