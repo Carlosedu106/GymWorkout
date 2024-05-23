@@ -4,7 +4,7 @@ import SingUpAluno from './pages/SingUpAluno';
 import SignIn from './pages/SignIn';
 import Home from "./pages/Home"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SideBarAdm from './components/SidebarAdm';
+// import SideBarAdm from './components/SidebarAdm';
 import Dashboard from './pages/Dashboard';
 
 function App() {

@@ -13,7 +13,6 @@ headers = {
 }
 params = {
     'limit': '50',
-    'lang': 'pt-BR'
 }
 
 @exercicios_bp.route('/exercises/', methods = ['GET'])
@@ -35,7 +34,7 @@ def getExercicioById(id):
    
     if response.ok:
         # Retornando os dados como JSON
-        return jsonify(response.json())
+        return response.json()
     else:
         # Se a requisição falhar, retornar uma mensagem de erro
         return 'Erro ao obter os exercícios', response.status_code

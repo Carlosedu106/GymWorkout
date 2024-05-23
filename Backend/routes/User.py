@@ -70,3 +70,11 @@ def logout():
         return "Saindo"
     else:
         return "Usuário não autenticado", 403
+
+@user_bp.route('/user/<string:id>', methods = ['GET'])
+def getById(id):
+    try:
+        usuario = Usuario.select().where(Usuario.id == id).first()
+        return jsonify(usuario.to_dict())
+    except Usuario.DoesNotExist:
+        return jsonify({'error': 'User not found'}), 404

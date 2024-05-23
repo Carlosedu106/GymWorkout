@@ -4,10 +4,10 @@ import os, sys
 from peewee import *
 
 bdConnection = (os.getcwd()+'/Backend/bd')
+sys.path.append(bdConnection)
 
 from TipoUsuarioScheme import *
 
-sys.path.append(bdConnection)
 
 from Connection import * # type: ignore
 
@@ -36,7 +36,12 @@ class Usuario(BaseModel, UserMixin):
 if not bd.is_closed():
     bd.close()
 
-
+def is_aluno(user_id):
+    try:
+        usuario = Usuario.get_by_id(user_id)
+        return usuario.tipoUsuario.descricao == 'Aluno'
+    except Usuario.DoesNotExist:
+        return False
 
 bd.connect()
 # bd.create_tables([Usuario])
