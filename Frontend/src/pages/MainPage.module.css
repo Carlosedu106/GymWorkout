@@ -1,0 +1,24 @@
+.main {
+    position: "relative";
+    margin: 6vh 15vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.table {
+    position: "relative";
+    padding: 50px;
+    border: 1px solid black;
+}
+
+.sidebar{
+    width: 5vw;
+    display: "flex";
+}
+
+.column{
+    padding: 20px;
+    text-align: "center";
+    border: "1px solid white";
+    font-size: 20px;
+}
