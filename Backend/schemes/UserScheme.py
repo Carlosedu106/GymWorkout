@@ -22,7 +22,7 @@ class Usuario(BaseModel, UserMixin):
     phone = CharField(max_length=11)
     dateOfBirth = DateField()
     tipoUsuario= ForeignKeyField(TipoUsuario, backref="usuarios")
-    
+    personal = ForeignKeyField('self', backref="usuarios", null = True)
     def to_dict(self):
         return {
             'id': self.id,
