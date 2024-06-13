@@ -23,5 +23,5 @@ if not bd.is_closed():
     bd.close()
 
 bd.connect()
-bd.create_tables([UsuarioTreino])
+# bd.create_tables([UsuarioTreino])
 bd.close()

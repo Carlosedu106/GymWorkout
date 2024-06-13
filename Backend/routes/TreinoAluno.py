@@ -71,3 +71,24 @@ def get_treinos_aluno():
         UsuarioTreino.usuarioId_id == data["alunoId"] and UsuarioTreino.usuarioId_id == data["alunoId"])
     treino_usuario.execute()
     return jsonify({'message': 'TREINO REMOVIDO DO USUÁRIO'}), 200
+
+@treinoUsuario_bp.route('/ExerciseUser/all/<int:alunoId>', methods=['GET'])
+def buscar_exercicios_aluno(alunoId):
+    # Buscar todos os exercícios associados ao ID do aluno
+    try:
+        exercicios = (UsuarioTreino
+                      .select()
+                      .where(UsuarioTreino.usuarioId == alunoId))
+        
+        # Preparar a resposta com a lista de exercícios
+        resultado = []
+        for exercicio in exercicios:
+            resultado.append({
+                'exercicioId': exercicio.treinoId,
+                'repeticoes': exercicio.repeticoes,
+                'series': exercicio.series
+            })
+        
+        return jsonify({'exercicios': resultado}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

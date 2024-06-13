@@ -92,7 +92,7 @@ export const MainPage = () => {
 				) : (
 					""
 				)}
-				<Workout />
+				<Workout user={user} />
 			</div>
 			<div></div>
 		</div>
