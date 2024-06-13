@@ -78,3 +78,37 @@ def getById(id):
         return jsonify(usuario.to_dict())
     except Usuario.DoesNotExist:
         return jsonify({'error': 'User not found'}), 404
+    
+def get_By_Id(id):
+    try:
+        usuario = Usuario.select().where(Usuario.id == id).first()
+        return usuario
+    except Usuario.DoesNotExist:
+        return None
+    
+@user_bp.route('/user/personalaluno', methods = ["POST"])
+def vincularPersonalAluno():
+    data = request.get_json()
+
+    user_id = data.get('userId')
+    personal_id = data.get('personalId')
+    
+
+    if not user_id or not personal_id:
+        return jsonify({'error': 'Os campos userId e personalId são obrigatórios'}), 400
+
+    try:
+        usuario = get_By_Id(user_id)
+        personal = get_By_Id(personal_id)
+        print("-----------------------------------------")
+        print(personal)
+        
+        if personal.tipoUsuario.descricao != 'Personal':
+            return {'error': 'O usuário especificado não é um personal trainer'}
+        
+        usuario.personal = personal
+        usuario.save()
+        return {'message': 'Personal vinculado com sucesso'}
+    except Usuario.DoesNotExist:
+        return {'error': 'Usuário ou personal não encontrado'}
+    

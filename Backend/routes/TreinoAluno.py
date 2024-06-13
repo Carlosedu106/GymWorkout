@@ -57,4 +57,17 @@ def excluir_treino_aluno():
         UsuarioTreino.usuarioId_id == data["alunoId"] and UsuarioTreino.usuarioId_id == data["alunoId"])
     treino_usuario.execute()
     return jsonify({'message': 'TREINO REMOVIDO DO USUÁRIO'}), 200
+
+
+@treinoUsuario_bp.route('/ExerciseUser', methods=['GET'])
+def get_treinos_aluno():
+    data = request.get_json()
+    try: 
+        Usuario.select().where(Usuario.id == data["alunoId"]).first()
+    except User.DoesNotExist:
+        return jsonify({'error': 'Aluno não encontrado'}), 404
     
+    treino_usuario = UsuarioTreino.delete().where(
+        UsuarioTreino.usuarioId_id == data["alunoId"] and UsuarioTreino.usuarioId_id == data["alunoId"])
+    treino_usuario.execute()
+    return jsonify({'message': 'TREINO REMOVIDO DO USUÁRIO'}), 200
