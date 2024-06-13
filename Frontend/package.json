@@ -17,6 +17,7 @@
     "@iconify/react": "^4.1.1",
     "@mui/material": "^5.15.19",
     "axios": "^1.6.8",
+    "google-translate-api": "^2.3.0",
     "primereact": "^10.6.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

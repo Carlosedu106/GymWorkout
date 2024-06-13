@@ -1,24 +1,43 @@
+/* .container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+} */
+
 .main {
-    position: "relative";
-    margin: 6vh 15vw;
-    justify-content: center;
-    align-items: center;
+    padding: 20px;
+    text-align: right;
 }
 
 .table {
-    position: "relative";
-    padding: 50px;
-    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 83%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-left: auto;
 }
 
-.sidebar{
-    width: 5vw;
-    display: "flex";
-}
-
-.column{
+.column {
     padding: 20px;
     text-align: "center";
-    border: "1px solid white";
+    font-size: 1em;
+}
+
+.header {
+    background-color: #5a5653;
+    color: white;
     font-size: 20px;
+    text-align: left;
+    padding: 10px;
+}
+
+.cardsConteiner{
+    width: calc(100vw - 220px);
+    padding: 10px 50px;
+    height: 20px;
+    margin-left: 220px;
+    display: flex;
+    gap: 10px;
 }

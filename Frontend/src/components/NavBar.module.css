@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+.NavBar{
+    display: flex;
+    width: calc(100% - 220px);
+    margin-left: 220px;
+    background-color: #363434;
+    padding: 5px 35px;
+    align-items: center;
+
+}
+
+.logout:hover{
+    color:aliceblue
+}
+
+.logout{
+    cursor: pointer;
+    margin-left: auto;
+    color:aliceblue;
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+}
+
+
+
+

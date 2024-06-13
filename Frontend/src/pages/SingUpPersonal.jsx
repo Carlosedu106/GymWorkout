@@ -62,7 +62,7 @@ const SingUpPersonal = () => {
          <>       
             <div className={styles.form_div}>
                 <ToastContainer />
-                <form onSubmit={handleSubmit} className={styles.form_styled}>
+                <form onSubmit={handleSubmit} className={styles.form_styled1}>
                     <label>
                         <p>Nome Usuário:</p>
                         <input type="text" 
@@ -98,7 +98,7 @@ const SingUpPersonal = () => {
                                value={confirmPassword}
                         />
                     </label>
-                    <button type="submit" className={styles.button} >Cadastrar</button>
+                    <button type="submit" className={styles.button2} >Cadastrar</button>
                 </form>
             </div>
             <div className={styles.base_text}>

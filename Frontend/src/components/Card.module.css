@@ -1,0 +1,68 @@
+.card{
+    width: 400px;
+    height: 400px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #fffafa;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+
+}
+
+.selectContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.select{
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    background-color: #f9f9f9;
+    font-size: 16px; 
+}
+
+.button {
+    width: 50px;
+    padding: 10px 0px;
+    margin-top: 10px;
+    margin-left: 86%;
+    cursor: pointer;
+    background-color: #04AA6D; 
+    color: white;
+    border-radius: 5px;
+    
+}
+
+
+.saveButton { 
+    
+    margin-top: 40px;
+    margin-left: 83%;
+    background-color: #2170e5f9; 
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocompleteInput{
+    width: 100%;
+}
+
+.input{
+    margin: 50px;
+}
+
+/* ExerciseManager.module.css */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaço entre os cards */
+}

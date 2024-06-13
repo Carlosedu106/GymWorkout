@@ -1,6 +1,8 @@
 import requests
 from flask import Flask, jsonify, request, Blueprint
 
+
+
 app = Flask(__name__)
 
 exercicios_bp = Blueprint('exercicios', __name__)

@@ -1,11 +1,10 @@
-
 /* .center{
     padding: 5px;
     margin: 10px;
     
 } */
 
-.button{
+.button {
     cursor: pointer;
     border: none;
     border-radius: 15px;
@@ -17,15 +16,33 @@
     transition: 0.2s;
 }
 
-.button:hover{
+.button:hover {
     background-color: #ed940d;
 
 }
 
 .Homepage {
-    height: 100vh;
-    background: #000000 url("../assets/background3.png") no-repeat;
-    background-position:center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
+.content {
+    flex: 1;
+    /* Faz o conteúdo interno crescer para preencher a altura disponível */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centraliza verticalmente o conteúdo */
+    align-items: center;
+    /* Centraliza horizontalmente o conteúdo */
+}
 
+.responsiveImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}

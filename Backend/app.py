@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_login import LoginManager
 import os,sys
+from flask_cors import CORS
+
 
 routes = (os.getcwd()+'/Backend/routes')
 sys.path.append(routes)
@@ -11,6 +13,7 @@ from Treinos import exercicios_bp as exercicios_app
 from TreinoAluno import treinoUsuario_bp as treinoAluno_app 
 
 app = Flask(__name__)
+CORS(app)
 loginManager = LoginManager(app)
 app.config['SECRET_KEY'] = '@@@@@@@@'
 

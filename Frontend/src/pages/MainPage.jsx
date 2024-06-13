@@ -1,105 +1,102 @@
 import SideBarAdm from "../components/SidebarAdm";
 import SideBarPersonal from "../components/SidebarPersonal";
 import SideBarAluno from "../components/SidebarAluno";
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import 'primereact/resources/themes/bootstrap4-light-blue/theme.css'; // Tema
-import 'primereact/resources/primereact.min.css'; // Estilos primários
-import styles from './MainPage.module.css'
-// import 'primeicons/primeicons.css'; // Ícones
+import { useContext, useState, useEffect } from "react";
+import axios from "axios";
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css"; // Tema
+import "primereact/resources/primereact.min.css"; // Estilos primários
+import styles from "./MainPage.module.css";
 import { useLocation } from "react-router-dom";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-
-
+import Table from "../components/Table";
+import Workout from "../components/Workout";
+import Card from "../components/Card";
+import { UserContext } from "../contexts/UserContext";
+import { NavBar } from "../components/NavBar";
 
 export const MainPage = () => {
-    const [tiposUsuario, setTiposUsuario] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const location = useLocation();
-    const [data, setData] = useState([
-    ]);
+	const [tiposUsuario, setTiposUsuario] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const location = useLocation();
+	const [data, setData] = useState([]);
+	const [sidebarOption, setSidebarOption] = useState("");
+	const { user } = useContext(UserContext);
 
+	function handleClick() {
+		axios
+			.get("http://demo6113958.mockable.io/alunos")
+			.then((response) => {
+				const alunos = response.data.lista.map((c) => {
+					return {
+						id: c.id,
+						cpf: c.cpf,
+						matricula: c.matricula,
+						nome: c.nome,
+						idEndereco: c.idEndereco,
+						curso: c.curso,
+					};
+				});
+				setData(alunos);
+			})
+			.catch((error) => console.log(error));
+	}
 
-    function handleClick() {
-        axios
-            .get("http://demo6113958.mockable.io/alunos")
-            .then(response => {
-                const alunos = response.data.lista.map(c => {
-                    return {
-                        id: c.id,
-                        cpf: c.cpf,
-                        matricula: c.matricula,
-                        nome: c.nome,
-                        idEndereco: c.idEndereco,
-                        curso: c.curso
-                    };
-                });
-                setData(alunos);
-            })
-            .catch(error => console.log(error));
-    }
+	useEffect(() => {
+		console.log(user, "TA AQUUIIIIIII");
+		const verifyUser = async () => {
+			try {
+				const response = await axios.get("/tipoUsuario");
+				setTiposUsuario(location.state?.usuario);
+				console.log(user);
+				setLoading(false);
+			} catch (error) {
+				console.error("Erro:", error);
+				setLoading(false);
+			}
+		};
+		handleClick();
 
+		verifyUser();
+	}, []);
 
-    useEffect(() => {
-        console.log("está sendo chamado");
-        const verifyUser = async () => {
-            try {
-                const response = await axios.get('/tipoUsuario');
-                setTiposUsuario(location.state?.usuario);
-                console.log(tiposUsuario)
-                setLoading(false);
-            } catch (error) {
-                console.error('Erro:', error);
-                setLoading(false);
-            }
-        };
-        handleClick();
+	const getOptionSidebar = (option) => {
+		setSidebarOption(option);
+	};
 
-        verifyUser();
-    }, []);
+	const renderSideBar = () => {
+		if (loading) {
+			return <div>Loading...</div>;
+		} else {
+			switch (user.typeUser) {
+				case "Administrador":
+					return <SideBarAdm onItemClick={getOptionSidebar} />;
+				case "Personal":
+					return <SideBarPersonal onItemClick={getOptionSidebar} />;
+				case "Aluno":
+					return <SideBarAluno onItemClick={getOptionSidebar} />;
+				default:
+					return <div>Tipo de usuário desconhecido.</div>;
+			}
+		}
+	};
 
-
-
-    const renderSideBar = () => {
-        if (loading) {
-            return <div>Loading...</div>;
-        } else {
-            switch (tiposUsuario) {
-                case 'Administrador':
-                    return <SideBarAdm />;
-                case 'Personal':
-                    return <SideBarPersonal />;
-                case 'Aluno':
-                    return <SideBarAluno />;
-                default:
-                    return <div>Tipo de usuário desconhecido.</div>;
-            }
-        }
-    };
-
-
-    return (
-
-        <div>
-            <div style={{ }}>
-                {renderSideBar()}
-            </div>
-
-            <div  className={styles.main}>
-
-                <h1>Gerenciamento de Alunos</h1>
-                <br></br>
-
-                <DataTable value={data} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} className={styles.table}>
-                    <Column className={styles.column} field="id" header="id" headerStyle={{ fontSize: '30px' }}></Column>
-                    <Column className={styles.column} field="nome" header="nome" headerStyle={{ fontSize: '30px' }}></Column>
-                    <Column className={styles.column} field="cpf" header="cpf" headerStyle={{ fontSize: '30px' }}></Column>
-                    <Column className={styles.column} field="matricula" header="matricula" headerStyle={{ fontSize: '30px' }}></Column>
-                </DataTable>
-            </div>
-        </div>
-    );
-}
+	return (
+		<div>
+			<NavBar />
+			<div className={styles}>{renderSideBar()} </div>
+			<div>
+				{sidebarOption === "aluno" ? <Table data={data} /> : ""}
+				{sidebarOption === "treino" ? (
+					<div className={styles.cardsConteiner}>
+						<Card user={user} />
+					</div>
+				) : (
+					""
+				)}
+				<Workout />
+			</div>
+			<div></div>
+		</div>
+	);
+};
 
 export default MainPage;

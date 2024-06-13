@@ -74,13 +74,13 @@ const SingUpAluno = () => {
 
     return (
         <>
-            <div className={styles.form_div}>
+            <div className={styles.form_div2}>
                 <ToastContainer />
                 <Link to={"/personal/register"}>
                     <button className={`${styles.button} ${styles.button_personal} `}> Sou personal
                     </button>
                 </Link>
-                <form onSubmit={handleSubmit} className={styles.form_styled}>
+                <form onSubmit={handleSubmit} className={styles.form_styled2}>
                     <label>
                         <p>Nome Usuário:</p>
                         <input type="text"

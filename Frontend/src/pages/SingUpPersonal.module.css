@@ -5,20 +5,20 @@
     align-items: center;
 }
 
-.form_styled {
+.form_styled1 {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 300px;
-    height: 400px;
+    height: 450px;
     text-align: center;
     background-color: #363434;
     border-radius: 20px;
     padding: 30px;
   }
 
-  .form_styled input[type='text'],
-  .form_styled input[type='password'] {
+  .form_styled1 input[type='text'],
+  .form_styled1 input[type='password'] {
   display: flex;
   margin-bottom: 10px;
   padding: 5px;
@@ -27,7 +27,7 @@
   border-radius: 20px;
 }
 
-.button{
+.button2{
     cursor: pointer;
     border: none;
     border-radius: 15px;
