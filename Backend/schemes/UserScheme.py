@@ -32,7 +32,7 @@ class Usuario(BaseModel, UserMixin):
             'phone': self.phone,
             'dateOfBirth': str(self.dateOfBirth),  # Convertendo para string
             'typeUser': self.tipoUsuario.descricao,  # Obtendo o tipo de usuário
-            'personal': self.personal if self.personal else None  # Lidando com o caso null
+            'personal': self.personal.id if self.personal else None  # Lidando com o caso null
         }
 
 if not bd.is_closed():

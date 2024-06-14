@@ -31,7 +31,7 @@ def adicionar_usuario_treino():
 
     usuario_treino = UsuarioTreino(
         usuarioId=data["alunoId"],
-        treinoId=data["exercicioId"],
+        exercicioId=data["exercicioId"],
         repeticoes=data["repeticoes"],
         series=data["series"]
     )

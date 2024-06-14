@@ -28,7 +28,7 @@ const Workout = ({ user }) => {
 
 	useEffect(() => {
 		callApi();
-	}, []);
+	}, [user]); // Adicionei user como dependência para que o useEffect seja chamado sempre que user mudar
 
 	useEffect(() => {
 		const fetchExercises = async () => {
@@ -43,6 +43,14 @@ const Workout = ({ user }) => {
 		fetchExercises();
 	}, []);
 
+	function padWithZeros(number) {
+		let numberStr = String(number);
+		while (numberStr.length < 4) {
+			numberStr = "0" + numberStr;
+		}
+		return numberStr;
+	}
+
 	return (
 		<div className={styles.button}>
 			<table>
@@ -52,32 +60,39 @@ const Workout = ({ user }) => {
 						<th>Nome</th>
 						<th>Repetições</th>
 						<th>Séries</th>
+						<th>Adicionar</th>
+						<th>Remover</th>
 					</tr>
 				</thead>
 				<tbody>
 					{data.exercicios.map((item, index) => {
+						const newNumber = padWithZeros(item.exercicioId);
 						const exercise = exercises.find(
-							(option) => option.id === item.exercicioId
+							(option) => option.id === newNumber
 						);
 						return (
 							<tr key={index}>
 								<td>{index + 1}</td>
-								<td>{exercise ? exercise.name : "Não encontrado"}</td>
+								<td>{exercise ? exercise.name : "Carregando..."}</td>
 								<td>{item.repeticoes}</td>
 								<td>{item.series}</td>
+								<td>
+									<button
+										onClick={() =>
+											console.log(exercise ? exercise.name : "Carregando...")
+										}
+									>
+										Adicionar
+									</button>
+								</td>
+								<td>
+									<button>Remover</button>
+								</td>
 							</tr>
 						);
 					})}
 				</tbody>
 			</table>
-			<button
-				className={styles.button}
-				onClick={() =>
-					console.log(exercises.find((option) => option.id === "1512")?.name)
-				}
-			>
-				teste
-			</button>
 		</div>
 	);
 };

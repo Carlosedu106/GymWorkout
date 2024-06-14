@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, jsonify, request, Blueprint
-
+from TreinoScheme import *
+import json
 
 
 app = Flask(__name__)
@@ -79,3 +80,24 @@ def getEquipaments():
     else:
         # Se a requisição falhar, retornar uma mensagem de erro
         return 'Erro ao obter os dados!', response.status_code
+    
+@exercicios_bp.route('/treino/add', methods=['POST'])
+def add_treino():
+    data = request.get_json()
+    usuario_id = data.get('usuarioId')
+    
+
+    # Verifica se os campos obrigatórios estão presentes
+    if not usuario_id:
+        return jsonify({'error': 'Os campos usuarioId e descricao são obrigatórios'}), 400
+
+    # Cria um novo treino
+    treino = Treino.create(usuarioId=usuario_id, descricao=descricao)
+    return jsonify(model_to_dict(treino)), 201
+
+# Rota para obter todos os treinos (GET)
+@exercicios_bp.route('/treino/get', methods=['GET'])
+def get_treinos():
+    treinos = Treino.select()
+    treinos_list = [model_to_dict(treino) for treino in treinos]
+    return jsonify(treinos_list)

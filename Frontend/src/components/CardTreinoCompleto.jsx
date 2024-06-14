@@ -138,7 +138,6 @@ const ExerciseManager = ({ user }) => {
 	const [exercises, setExercises] = useState([]);
 	const [exerciseList, setExerciseList] = useState([{}]);
 	const [alunoId, setAlunoId] = useState("");
-	const [exerciseAluno, setExerciseAluno] = useState([]);
 
 	useEffect(() => {
 		const fetchExercise = async () => {
@@ -152,25 +151,6 @@ const ExerciseManager = ({ user }) => {
 		};
 		fetchExercise();
 	}, []);
-
-	useEffect(() => {
-		const exerciseDuplicate = async () => {
-			try {
-				const response = await axios.get(
-					`http://localhost:5000/ExerciseUser/all/${
-						user.typeUser === "Personal" ? alunoId : user.id
-					}`
-				);
-				setExerciseAluno(response.data);
-				console.log(response.data);
-			} catch (error) {
-				console.error("exerciseDuplicate - error:", error);
-			}
-		};
-		if (alunoId || (user.typeUser === "Aluno" && user.id)) {
-			exerciseDuplicate();
-		}
-	}, [alunoId]);
 
 	const addTraining = (exercicioAdd) => {
 		console.log("Adicionar Treino:", exercicioAdd);

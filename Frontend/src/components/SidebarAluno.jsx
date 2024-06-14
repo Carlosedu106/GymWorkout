@@ -14,7 +14,11 @@ const SideBarPersonal = ({ onItemClick }) => {
 				</li>
 				<li onClick={() => handleItemClick("treino")}>
 					<Icon icon="ic:baseline-add" width={25} />
-					ADICIONAR TREINOS
+					ADICIONAR EXERCÍCIOS
+				</li>
+				<li onClick={() => handleItemClick("perfil")}>
+					<Icon icon="ic:baseline-add" width={25} />
+					PERFIL
 				</li>
 			</ul>
 		</div>

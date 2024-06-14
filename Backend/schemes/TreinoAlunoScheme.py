@@ -15,9 +15,10 @@ class BaseModel(Model):
         
 class UsuarioTreino(BaseModel):
     usuarioId = ForeignKeyField(Usuario, backref='usuario')
-    treinoId = IntegerField()
+    treinoId = ForeignKeyField(Treino, backref='treino', null=True)
     repeticoes = IntegerField()
     series = IntegerField()
+    
     
 if not bd.is_closed():
     bd.close()

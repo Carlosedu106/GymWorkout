@@ -94,17 +94,21 @@ def vincularPersonalAluno():
     personal_id = data.get('personalId')
     
 
-    if not user_id or not personal_id:
-        return jsonify({'error': 'Os campos userId e personalId são obrigatórios'}), 400
+    # if not user_id or not personal_id:
+    #     return jsonify({'error': 'Os campos userId e personalId são obrigatórios'}), 400
 
     try:
         usuario = get_By_Id(user_id)
-        personal = get_By_Id(personal_id)
+        if (personal_id != None):
+            personal = get_By_Id(personal_id)
+            if personal.tipoUsuario.descricao != 'Personal':
+                return {'error': 'O usuário especificado não é um personal trainer'}
+        else:
+            personal = None
         print("-----------------------------------------")
         print(personal)
         
-        if personal.tipoUsuario.descricao != 'Personal':
-            return {'error': 'O usuário especificado não é um personal trainer'}
+        
         
         usuario.personal = personal
         usuario.save()
@@ -112,3 +116,8 @@ def vincularPersonalAluno():
     except Usuario.DoesNotExist:
         return {'error': 'Usuário ou personal não encontrado'}
     
+@user_bp.route('/user/get', methods=['GET'])
+def get_usuarios():
+    usuarios = Usuario.select()
+    userList = [usuario.to_dict() for usuario in usuarios]
+    return jsonify(userList)

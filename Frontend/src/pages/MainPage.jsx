@@ -12,6 +12,8 @@ import Workout from "../components/Workout";
 import Card from "../components/Card";
 import { UserContext } from "../contexts/UserContext";
 import { NavBar } from "../components/NavBar";
+import PerfilAluno from "../components/PerfilAluno";
+import GerenciamentoAlunos from "../components/GerenciamentoAlunos";
 
 export const MainPage = () => {
 	const [tiposUsuario, setTiposUsuario] = useState([]);
@@ -92,9 +94,15 @@ export const MainPage = () => {
 				) : (
 					""
 				)}
-				<Workout user={user} />
+				{sidebarOption === "meusTreinos" ? <Workout user={user} /> : ""}
+				{sidebarOption === "perfil" ? <PerfilAluno user={user} /> : ""}
+				{sidebarOption === "adicionarAlunos" ? (
+					<GerenciamentoAlunos user={user} />
+				) : (
+					""
+				)}
+				{sidebarOption === "adicionarTreinos" ? <Workout user={user} /> : ""}
 			</div>
-			<div></div>
 		</div>
 	);
 };
